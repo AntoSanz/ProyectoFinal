@@ -14,4 +14,8 @@ public class bomomb : Enemy
     {
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hit!");
+    }
 }

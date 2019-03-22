@@ -532,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 8702059098103027867, guid: 6231f24e019b74543a2e87c6f46cb4bc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3504734
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 8702059098103027867, guid: 6231f24e019b74543a2e87c6f46cb4bc,
         type: 3}
@@ -1023,8 +1023,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.2184187, y: -0.2918541, z: 0.0686441, w: 0.9286562}
-  m_LocalPosition: {x: 9.184616, y: 6.5905056, z: -9.029289}
+  m_LocalRotation: {x: -0.25669572, y: 0.03825857, z: -0.010170157, w: -0.9656812}
+  m_LocalPosition: {x: 0.65982056, y: 7.4169564, z: -15.343524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1718,6 +1718,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1240448880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240448876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e2c0f51dfc596c4985304a66910bb8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  health: 0
+  distanciaDeteccion: 0
+  prefabEnemyDead: {fileID: 0}
 --- !u!1 &1495255529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1279649916243441053, guid: c00efd848262fa142af4b4419a5543c9,

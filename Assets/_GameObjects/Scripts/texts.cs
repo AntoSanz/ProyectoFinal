@@ -21,6 +21,7 @@ public class texts
     public const string ANIM_SHOOT = "Shoot";
     public const string ANIM_TAKEDAMAGE = "TakeDamage";
     public const string ANIM_DIE = "Die";
+    public const string ANIM_ISWALKING = "isWalking";
 }
 
 

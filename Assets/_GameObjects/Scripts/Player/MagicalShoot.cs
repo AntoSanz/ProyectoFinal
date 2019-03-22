@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class MagicalShoot : MonoBehaviour
 {
-    // Start is called before the first frame update
+    float timeToDestroy = 2.20f;
     void Start()
     {
-        
+        Destroy(this.gameObject, timeToDestroy);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

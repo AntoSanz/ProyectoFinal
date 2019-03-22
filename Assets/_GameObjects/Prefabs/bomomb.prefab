@@ -253,8 +253,10 @@ GameObject:
   - component: {fileID: 4180194528404044028}
   - component: {fileID: 8910769473221083904}
   - component: {fileID: 4925708916833908806}
+  - component: {fileID: 5071382714386956521}
+  - component: {fileID: 1952745014510371708}
   m_Layer: 0
-  m_Name: StoneMonster
+  m_Name: bomomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,6 +310,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a8eeb9411d2d4e4180ec70be187c615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &5071382714386956521
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810855046711477591}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5313015
+  m_Center: {x: 0, y: 0.55090857, z: -0}
+--- !u!54 &1952745014510371708
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4810855046711477591}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &5935421818358694895
 GameObject:
   m_ObjectHideFlags: 0

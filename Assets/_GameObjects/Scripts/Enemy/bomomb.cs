@@ -6,20 +6,10 @@ public class bomomb : Enemy
 {
     public override void Start()
     {
+        //QUITAR CUANDO ESTE EN FUNCIONAMIENTO EL NAVMESH
         this.transform.Translate(Vector3.right);
-        base.Start();
-    }
+        //QUITAR CUANDO ESTE EN FUNCIONAMIENTO EL NAVMESH
 
-    void Update()
-    {
-        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Hit triger!");
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Hit collision!");
+        base.Start();
     }
 }

@@ -5,9 +5,12 @@ using UnityEngine;
 public class MagicalShoot : MonoBehaviour
 {
     float timeToDestroy = 2.20f;
+    public Animator colliderAnim;
     void Start()
     {
-        Destroy(this.gameObject, timeToDestroy);
+            colliderAnim.SetBool("Start", true);
+            Destroy(this.gameObject, timeToDestroy);
     }
+
 
 }

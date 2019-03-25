@@ -23,12 +23,21 @@ public class Enemy : MonoBehaviour
     }
     private void Move()
     {
-        
+
     }
     private void Die()
     {
         Instantiate(prefabEnemyDead, this.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerShoot"))
+        {
+
+            //            TakeDamage(damage);
+            Debug.Log("Hit triger!");
+        }
     }
 }

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2740137086930471481}
   - component: {fileID: 7260602884483210047}
   m_Layer: 0
-  m_Name: FantasyBee
-  m_TagString: Untagged
+  m_Name: bee
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

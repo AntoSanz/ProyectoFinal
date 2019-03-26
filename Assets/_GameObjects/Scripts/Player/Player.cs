@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public enum State { Idle, Walking, Running, Jumping }
     public State estado = State.Idle;
 
+    #region PRIVATE_FUNCTIONS
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -39,9 +40,6 @@ public class Player : MonoBehaviour
         ManageMovementAnimation();
     }
 
-    /// <summary>
-    /// Gestiona las animaciones de andar e idle.
-    /// </summary>
     private void ManageMovementAnimation()
     {
         if (agent.remainingDistance <= agent.stoppingDistance)
@@ -61,10 +59,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Gestiona el movimiento para cuando hacemos click derecho con el ratón.
-    /// Cambia el estado actual a State.Walking.
-    /// </summary>
     private void NavMeshMovement()
     {
         if (Input.GetMouseButtonDown(1))
@@ -80,49 +74,33 @@ public class Player : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Ejecuta la función de ataque con el click izquierdo del ratón.
-    /// </summary>
     private void ManageAtack()
     {
         if (Input.GetButtonDown(texts.FIRE_1))
         {
             StopMove();
+            LookAtClick();
             Debug.Log("FIRE1 RANGE");
             animator.SetTrigger(texts.ANIM_SHOOT);
             firePoint.Shoot();
         }
     }
 
-    /// <summary>
-    /// Para el desplazamiento del player y cambia su estado a Idle.
-    /// </summary>
+    private void LookAtClick()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
+        {
+
+            agent.transform.LookAt(new Vector3(hit.point.x, 0, hit.point.z));
+        }
+    }
+
     private void StopMove()
     {
         estado = State.Idle;
         animator.SetBool(texts.ANIM_ISWALKING, false);
         agent.destination = transform.position;
-    }
-
-    /// <summary>
-    /// Gestiona el daño recibido y lo representa en la barra de vida. Además hace la animación de recibir daño y si la vida llega a cero (0), ejecuta el método de morir.
-    /// </summary>
-    /// <param name="_damage"></param>
-    private void TakeDamage(int _damage)
-    {
-        Debug.Log("TakeDamage.");
-        Debug.Log("HP: " + currentHp);
-
-        currentHp = currentHp - _damage;
-        sliderhp.value = currentHp;
-        if (currentHp > 0)
-        {
-            animator.SetTrigger(texts.ANIM_TAKEDAMAGE);
-        }
-        else
-        {
-            Die();
-        }
     }
 
     private void Die()
@@ -131,8 +109,6 @@ public class Player : MonoBehaviour
         animator.SetTrigger(texts.ANIM_DIE);
     }
 
-    //Cuando el player se mueve, el mago mira hacia donde se está moviendo
-    //Cuando el player hace click del ratón, el mago mira hacia donde ha hecho click el jugador y hace la habilidad asignada hacia ahí y vuelve a mirar ¿hacia donde lo estaba haciendo o se queda mirando a donde ataca?
     private void DebugAnimations()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -149,4 +125,19 @@ public class Player : MonoBehaviour
             animator.SetTrigger(texts.ANIM_ATACK);
         }
     }
+    #endregion
+
+    #region PUBLIC_FUNCTIONS
+    public void TakeDamage(int _damage)
+    {
+        currentHp = currentHp - _damage;
+        sliderhp.value = currentHp;
+        if (currentHp > 0)
+        {
+            animator.SetTrigger(texts.ANIM_TAKEDAMAGE);
+        }
+        else Die();
+    }
+    #endregion
+
 }

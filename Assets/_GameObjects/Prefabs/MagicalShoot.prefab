@@ -108,6 +108,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5c5cc4cea1eb464abc9e4b0d48a0818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MagicalShoot: {fileID: 5248356980782252250}
+  damage: 0
 --- !u!1 &5598901032612386930
 GameObject:
   m_ObjectHideFlags: 0
@@ -155,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderAnim: {fileID: 5093155808903959621}
+  damage: 50
 --- !u!1 &7426809392907686184
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4461185388861597222
 Transform:
   m_ObjectHideFlags: 0

@@ -6,9 +6,11 @@ public class MagicalShoot : MonoBehaviour
 {
     float timeToDestroy = 2.20f;
     public Animator colliderAnim;
+    public int damage;
+
     void Start()
     {
-            colliderAnim.SetBool("Start", true);
+            colliderAnim.SetBool(texts.START, true);
             Destroy(this.gameObject, timeToDestroy);
     }
 

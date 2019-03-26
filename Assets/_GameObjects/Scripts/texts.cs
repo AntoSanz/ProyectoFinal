@@ -17,11 +17,16 @@ public class texts
     public const string MOVE_LEFT = "";
     public const string MOVE_RIGHT = "";
     //Animations
+    public const string START = "Start";
     public const string ANIM_ATACK = "Atack";
     public const string ANIM_SHOOT = "Shoot";
     public const string ANIM_TAKEDAMAGE = "TakeDamage";
     public const string ANIM_DIE = "Die";
     public const string ANIM_ISWALKING = "isWalking";
+    public const string ANIM_TAKING_DAMAGE = "TakingDamage";
+    //Tags
+    public const string TAG_ENEMY = "Enemy";
+    public const string TAG_PLAYER = "Player";
 }
 
 

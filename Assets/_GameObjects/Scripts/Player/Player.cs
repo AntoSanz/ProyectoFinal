@@ -63,6 +63,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            //LookAtClick();
             animator.SetBool(texts.ANIM_ISWALKING, true);
             estado = State.Walking;
 

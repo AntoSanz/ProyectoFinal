@@ -12,10 +12,23 @@ public class Enemy : MonoBehaviour
     private const float TIME_TO_DESTROY = 2f;
     [SerializeField] GameObject prefabEnemyDead;
 
+
+    #region VIRTUAL_FUNCTIONS
+
     public virtual void Start()
     {
         anim = gameObject.GetComponent<Animator>();
     }
+
+    public virtual void DoSpecialAction()
+    {
+
+    }
+
+    #endregion
+
+    #region PUBLIC_FUNCTIONS
+
     public void TakeDamage(int _damage)
     {
         health = health - _damage;
@@ -29,15 +42,28 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    private void DoDamage(Collision collision)
+
+    #endregion
+
+    #region PRIVATE_FUNCTIONS
+
+    private void DoDamageMelee(Collision _collision)
     {
+        LookAtTarget(_collision);
         anim.SetTrigger(texts.ANIM_ATACK);
-        collision.gameObject.GetComponent<Player>().TakeDamage(damage);
+        _collision.gameObject.GetComponent<Player>().TakeDamage(damage);
     }
+
+    private void LookAtTarget(Collision _collision)
+    {
+        transform.LookAt(_collision.gameObject.transform);
+    }
+
     private void Move()
     {
 
     }
+
     private void Die()
     {
         Invoke("InstantiateParticleSystem", 2);
@@ -59,8 +85,10 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(texts.TAG_PLAYER))
         {
-            DoDamage(collision);
+            DoDamageMelee(collision);
+            DoSpecialAction();
         }
     }
 
+    #endregion
 }

@@ -12,4 +12,9 @@ public class bomomb : Enemy
 
         base.Start();
     }
+    public override void DoSpecialAction()
+    {
+        //EXPLOSION
+        base.DoSpecialAction();
+    }
 }

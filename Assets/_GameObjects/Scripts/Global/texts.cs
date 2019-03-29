@@ -6,6 +6,9 @@ public class texts
 {
     //Scenes
     public const string SCENE_1 = "Scene1";
+    public const string SCENE_HUD = "HUDScene";
+
+    //General
     public const string VERTICAL = "Vertical";
     public const string HORIZONTAL = "Horizontal";
 

@@ -11,11 +11,12 @@ public class Player : MonoBehaviour
     private AudioSource audiosource;
     private NavMeshAgent agent;
     [SerializeField] FirePoint firePoint;
-    [SerializeField] Slider sliderhp;
+    //[SerializeField] GameObject sliderhp;
+    private GameObject sliderhp;
 
     private float x, y, z;
-    private const int MAX_HP = 100;
-    private int currentHp;
+    //private const int MAX_HP = 100;
+    public int currentHp;
 
     public enum State { Idle, Walking, Running, Jumping }
     public State estado = State.Idle;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         currentHp = 100;
+        sliderhp = GameObject.FindGameObjectWithTag("HpPlayerSlider");
     }
 
     private void Update()
@@ -126,18 +128,33 @@ public class Player : MonoBehaviour
             animator.SetTrigger(texts.ANIM_ATACK);
         }
     }
+
+    private void UpdateHealBar(int currentHP)
+    {
+        sliderhp.GetComponent<Slider>().value = currentHp;
+        //sliderhp.value = currentHp;
+    }
     #endregion
 
     #region PUBLIC_FUNCTIONS
     public void TakeDamage(int _damage)
     {
         currentHp = currentHp - _damage;
-        sliderhp.value = currentHp;
+        UpdateHealBar(currentHp);
         if (currentHp > 0)
         {
             animator.SetTrigger(texts.ANIM_TAKEDAMAGE);
         }
         else Die();
+    }
+
+    public void GetHeal(int _heal)
+    {
+        currentHp = currentHp + _heal;
+        currentHp = Mathf.Min(currentHp, GameManager.Max_hp_player);
+        //sliderhp.value = currentHp;
+        UpdateHealBar(currentHp);
+        //currentHp = currentHp + _heal;
     }
     #endregion
 

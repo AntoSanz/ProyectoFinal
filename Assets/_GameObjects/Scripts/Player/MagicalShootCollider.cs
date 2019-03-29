@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class MagicalShootCollider : MonoBehaviour
 {
+    #region VAR
     [SerializeField] MagicalShoot MagicalShoot;
     public int damage;
+    #endregion
 
+    #region PRIVATE_FUNCIONS
     private void Start()
     {
         damage = MagicalShoot.damage;
-    }
-    public void DestroyCollider()
-    {
-        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,4 +22,15 @@ public class MagicalShootCollider : MonoBehaviour
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
+    #endregion
+
+    #region PUBLIC_FUNCIONS
+    public void DestroyCollider()
+    {
+        Destroy(this.gameObject);
+    }
+    #endregion
+
+
+
 }

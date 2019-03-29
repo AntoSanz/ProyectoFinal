@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class FirePoint : MonoBehaviour
 {
+    #region VAR
     [SerializeField] GameObject atackPrefab1;
     [SerializeField] Transform spawnPoint;
     [SerializeField] int damageArma = 10;
     [SerializeField] float cadencia;
+    #endregion
 
+    #region PUBLIC_FUNCIONS
     public void Shoot()
     {
         Instantiate(atackPrefab1, spawnPoint.position, spawnPoint.rotation);
     }
+    #endregion
+
 }

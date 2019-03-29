@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    #region VAR
     public int damage;
     public int health;
     public int distanciaDeteccion;
     private Animator anim;
     private const float TIME_TO_DESTROY = 2f;
     [SerializeField] GameObject prefabEnemyDead;
-
+    #endregion
 
     #region VIRTUAL_FUNCTIONS
 

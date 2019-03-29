@@ -12,6 +12,18 @@ EditorBuildSettings:
     path: Assets/_GameObjects/Scenes/MainMenu.unity
     guid: 51a0101e063769244b1e9366df824578
   - enabled: 1
-    path: Assets/_GameObjects/Scenes/Scene1.unity
+    path: Assets/_GameObjects/Scenes/DemoScene.unity
     guid: 23f873a50d55fba49975ffaa711635e2
+  - enabled: 1
+    path: Assets/_GameObjects/Scenes/HUDScene.unity
+    guid: 43f04fb8eab52d64b8e7d5e677ca73dc
+  - enabled: 1
+    path: Assets/_GameObjects/Scenes/Scenario1.unity
+    guid: bd300ea96aeb7f047a8945fd63e835e1
+  - enabled: 1
+    path: Assets/_GameObjects/Scenes/Scenario2.unity
+    guid: d49d5f3cb2c477d4cad37d22cb8adab2
+  - enabled: 1
+    path: Assets/_GameObjects/Scenes/Tutorial.unity
+    guid: c2e6ee7fc53fb4147818528ecdb9d331
   m_configObjects: {}

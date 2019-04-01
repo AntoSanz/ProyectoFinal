@@ -13,29 +13,34 @@ public class Player : MonoBehaviour
     [SerializeField] FirePoint firePoint;
     //[SerializeField] GameObject sliderhp;
     private GameObject sliderhp;
-
+    private float reloadTimeCount;
+    public float timeBetweenShoots;
     private float x, y, z;
     //private const int MAX_HP = 100;
     public int currentHp;
-
     public enum State { Idle, Walking, Running, Jumping }
     public State estado = State.Idle;
+
+    public bool canAtack;
 
     #region PRIVATE_FUNCTIONS
     private void Awake()
     {
+        canAtack = true;
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Start()
     {
+        reloadTimeCount = timeBetweenShoots;
         currentHp = 100;
         sliderhp = GameObject.FindGameObjectWithTag("HpPlayerSlider");
     }
 
     private void Update()
     {
+        reloadTimeCount = reloadTimeCount + Time.deltaTime;
         NavMeshMovement();
         ManageAtack();
         DebugAnimations();
@@ -79,13 +84,18 @@ public class Player : MonoBehaviour
 
     private void ManageAtack()
     {
-        if (Input.GetButtonDown(texts.FIRE_1))
+        if (canAtack == true && Input.GetButtonDown(texts.FIRE_1) && reloadTimeCount >= timeBetweenShoots)
         {
             StopMove();
             LookAtClick();
             Debug.Log("FIRE1 RANGE");
             animator.SetTrigger(texts.ANIM_SHOOT);
-            firePoint.Shoot();
+            bool isShooted = firePoint.Shoot();
+            if (isShooted)
+            {
+                reloadTimeCount = 0;
+            }
+
         }
     }
 
@@ -95,7 +105,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100))
         {
 
-            agent.transform.LookAt(new Vector3(hit.point.x, 0, hit.point.z));
+            agent.transform.LookAt(new Vector3(hit.point.x, firePoint.transform.position.y, hit.point.z));
         }
     }
 

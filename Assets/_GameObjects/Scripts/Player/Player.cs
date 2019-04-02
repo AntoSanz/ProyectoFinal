@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
     {
         reloadTimeCount = timeBetweenShoots;
         currentHp = 100;
-        sliderhp = GameObject.FindGameObjectWithTag("HpPlayerSlider");
+        sliderhp = GameObject.FindGameObjectWithTag(texts.TAG_SLIDERHP);
     }
 
     private void Update()

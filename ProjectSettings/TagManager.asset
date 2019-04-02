@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlayerShoot
   - HpPlayerSlider
+  - PointsCount
   layers:
   - Default
   - TransparentFX

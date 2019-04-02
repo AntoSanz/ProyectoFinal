@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
 
     public virtual void Start()
     {
+        health = health * GameManager.difficulty;
+        damage = damage * GameManager.difficulty;
+
         anim = gameObject.GetComponent<Animator>();
     }
 

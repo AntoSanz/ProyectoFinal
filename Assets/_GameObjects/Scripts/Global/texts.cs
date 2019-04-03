@@ -5,10 +5,13 @@ using UnityEngine;
 public class texts
 {
     //Scenes
+    public const string SCENE_MAIN_MENU = "MainMenu";
     public const string SCENE_TUTORIAL = "Tutorial";
     public const string SCENE_1 = "Scenario1";
     public const string SCENE_2 = "Scenario2";
     public const string SCENE_HUD = "HUDScene";
+    public const string SCENE_PAUSE = "PauseMenu";
+    public const string SCENE_ENDLEVEL = "EndLevel";
     //General
     public const string VERTICAL = "Vertical";
     public const string HORIZONTAL = "Horizontal";

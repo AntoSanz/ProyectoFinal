@@ -36,7 +36,6 @@ public class MainMenu : MonoBehaviour
 
     public void SelectDif()
     {
-
         int dif;
         switch (dropdownDif.value)
         {

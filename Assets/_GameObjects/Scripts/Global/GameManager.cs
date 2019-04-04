@@ -14,14 +14,14 @@ public class GameManager : MonoBehaviour
     private static int max_hp_player = 100;
     private const int POINTS_LENGTH = 6;
     private static int points = 0;
-    private static string formatScore;
+    public static string formatScore;
     private static Text pointsCount;
     //Variables que almacenan los playerprefs cargados
     public static int difficulty = 1;
     private static int unlockedLevels;
     private static string p0, p1, p2, p3;
-    private int currentSceneNumber;
-
+    public static int currentSceneNumber;
+    public static int SceneNumber;
     //private static TextMeshPro textMeshPoints;
     #endregion
 

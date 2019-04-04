@@ -1,18 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishLevel : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool isFinish;
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (other.CompareTag(texts.TAG_PLAYER))
+        {
+            SceneManager.LoadScene(texts.SCENE_ENDLEVEL, LoadSceneMode.Additive);
+        }
     }
 }

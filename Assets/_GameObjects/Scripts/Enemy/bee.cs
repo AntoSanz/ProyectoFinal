@@ -10,8 +10,8 @@ public class bee : Enemy
         base.Start();
     }
     
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 }

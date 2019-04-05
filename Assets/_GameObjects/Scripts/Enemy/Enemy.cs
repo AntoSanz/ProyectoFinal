@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,22 +13,58 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private const float TIME_TO_DESTROY = 2f;
     [SerializeField] GameObject prefabEnemyDead;
+
+    //Movimiento
+    public Transform[] routePoints;
+    private NavMeshAgent agente;
+    private float playerDistance;
+    //private Animator animator;
+    public bool enemySleep;
+    public float stopAcosoTime;
+
     #endregion
 
     #region VIRTUAL_FUNCTIONS
+    private void Awake()
+    {
+        agente = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+    }
 
     public virtual void Start()
     {
-        health = health * GameManager.difficulty;
-        damage = damage * GameManager.difficulty;
+        GetNewTarget();
 
+            //health = health * GameManager.difficulty;
+            //damage = damage * GameManager.difficulty;
+ 
+
+        player = GameObject.Find("Player").GetComponent<Player>();
         anim = gameObject.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        CheckChangeTarget();
+        //TryDetect();
+        if (enemySleep == false)
+        {
+            //CheckChangeTarget();
+            TryDetect();
+        }
+        //if (enemySleep == true)
+        //{
+        //    anim.SetBool(texts.ANIM_ISWALKING, false);
+        //}
+
     }
 
     public virtual void DoSpecialAction()
     {
 
     }
+
+    private Player player;
 
     #endregion
 
@@ -50,7 +87,6 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region PRIVATE_FUNCTIONS
-
     private void DoDamageMelee(Collision _collision)
     {
         LookAtTarget(_collision);
@@ -90,9 +126,83 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag(texts.TAG_PLAYER))
         {
             DoDamageMelee(collision);
+            IgnorePlayer();
+            
             DoSpecialAction();
         }
     }
+    #endregion
 
+    #region MOVIMIENTO
+
+    private void GetNewTarget()
+    {
+        anim.SetBool(texts.ANIM_ISWALKING, true);
+        int newTarget = UnityEngine.Random.Range(0, routePoints.Length);
+        GoTarget(newTarget);
+    }
+
+    private void GoTarget(int _target)
+    {
+        anim.SetBool(texts.ANIM_ISWALKING, true);
+        agente.destination = routePoints[_target].position;
+    }
+
+    private void GoTarget(Vector3 _target)
+    {
+        anim.SetBool(texts.ANIM_ISWALKING, true);
+        agente.destination = _target;
+    }
+
+    private void CheckChangeTarget()
+    {
+
+        if (transform.position == agente.destination)
+        //if (agente.remainingDistance < agente.stoppingDistance)
+        {
+            GetNewTarget();
+        }
+    }
+
+    private float GetPlayerDistance()
+    {
+        return Vector3.Distance(transform.position, player.gameObject.transform.position);
+    }
+
+    private void TryDetect()
+    {
+        playerDistance = GetPlayerDistance();
+        if (playerDistance <= distanciaDeteccion)
+        {
+            GoTarget(player.gameObject.transform.position);
+        }
+    }
+    private void IgnorePlayer()
+    {
+        GetNewTarget();
+        IgnoreP1();
+        Invoke("RestartIgnore", stopAcosoTime);
+        ////distanciaDeteccion = 0;
+        //enemySleep = true;
+        //GetNewTarget();
+        //StartCoroutine(IgnorePlayerTime());
+        ////distanciaDeteccion = 10;
+        //enemySleep = false;
+    }
+    private void IgnoreP1()
+    {
+        distanciaDeteccion = 0;
+        GetNewTarget();
+    }
+    private void RestartIgnore()
+    {
+        distanciaDeteccion = 10;
+    }
+    IEnumerator IgnorePlayerTime()
+    {
+        print("START" + Time.time);
+        yield return new WaitForSeconds(5);
+        print("END" + Time.time);
+    }
     #endregion
 }

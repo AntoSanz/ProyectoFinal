@@ -8,19 +8,19 @@ public class CanvasTutorial : MonoBehaviour
     public Player playerScript;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        PlayerAtackOff();
-        canvasPanels[0].SetActive(true);
+    //void Start()
+    //{
+    //    PlayerAtackOff();
+    //    canvasPanels[0].SetActive(true);
 
-    }
+    //}
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
 
-    }
+    //}
 
-    public void PlayerAtackOff() => playerScript.canAtack = false;
-    public void PlayerAtackOn() => playerScript.canAtack = true;
+    //public void PlayerAtackOff() => playerScript.canAtack = false;
+    //public void PlayerAtackOn() => playerScript.canAtack = true;
 }

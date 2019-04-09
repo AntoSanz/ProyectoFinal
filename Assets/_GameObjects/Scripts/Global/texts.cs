@@ -12,9 +12,11 @@ public class texts
     public const string SCENE_HUD = "HUDScene";
     public const string SCENE_PAUSE = "PauseMenu";
     public const string SCENE_ENDLEVEL = "EndLevel";
+    public const string SCENE_GAMEOVER = "GameOver";
     //General
     public const string VERTICAL = "Vertical";
     public const string HORIZONTAL = "Horizontal";
+    public const string MAX_POINTS_STRING = "Max Points: ";
     //Buttons
     public const string FIRE_1 = "Fire1";
     public const string FIRE_2 = "Fire2";

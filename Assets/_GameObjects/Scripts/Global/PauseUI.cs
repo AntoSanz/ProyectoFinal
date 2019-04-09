@@ -18,6 +18,8 @@ public class PauseUI : MonoBehaviour
     public void ContinueGame()
     {
         Time.timeScale = 1;
+        GameManager.pauseActive = false;
         SceneManager.UnloadSceneAsync(texts.SCENE_PAUSE);
     }
+    
 }

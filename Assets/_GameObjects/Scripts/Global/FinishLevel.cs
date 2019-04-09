@@ -11,6 +11,13 @@ public class FinishLevel : MonoBehaviour
         if (other.CompareTag(texts.TAG_PLAYER))
         {
             SceneManager.LoadScene(texts.SCENE_ENDLEVEL, LoadSceneMode.Additive);
+            TryToSavePoints();
         }
+    }
+
+    //Guardar los playerPrefs
+    private void TryToSavePoints()
+    {
+        GameManager.TryToSavePoints();
     }
 }

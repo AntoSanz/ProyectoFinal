@@ -15,5 +15,8 @@ public class SceneLoads : MonoBehaviour
     {
         SceneManager.LoadScene(texts.SCENE_HUD, LoadSceneMode.Additive);
     }
-
+    public static void LoadGameOverScene()
+    {
+        SceneManager.LoadScene(texts.SCENE_GAMEOVER, LoadSceneMode.Additive);
+    }
 }

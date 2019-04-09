@@ -130,6 +130,10 @@ public class Enemy : MonoBehaviour
             
             DoSpecialAction();
         }
+        if (collision.gameObject.CompareTag(texts.TAG_ENEMY))
+        {
+            GetNewTarget();
+        }
     }
     #endregion
 
@@ -137,13 +141,18 @@ public class Enemy : MonoBehaviour
 
     private void GetNewTarget()
     {
-        anim.SetBool(texts.ANIM_ISWALKING, true);
-        int newTarget = UnityEngine.Random.Range(0, routePoints.Length);
-        GoTarget(newTarget);
+        if (routePoints.Length > 0)
+        {
+            anim.SetBool(texts.ANIM_ISWALKING, true);
+            int newTarget = UnityEngine.Random.Range(0, routePoints.Length);
+            GoTarget(newTarget);
+        }
+
     }
 
     private void GoTarget(int _target)
     {
+
         anim.SetBool(texts.ANIM_ISWALKING, true);
         agente.destination = routePoints[_target].position;
     }
@@ -157,7 +166,7 @@ public class Enemy : MonoBehaviour
     private void CheckChangeTarget()
     {
 
-        if (transform.position == agente.destination)
+        if (routePoints.Length > 0 && transform.position == agente.destination)
         //if (agente.remainingDistance < agente.stoppingDistance)
         {
             GetNewTarget();

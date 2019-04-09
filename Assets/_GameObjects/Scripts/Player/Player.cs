@@ -22,11 +22,15 @@ public class Player : MonoBehaviour
     public State estado = State.Idle;
 
     public bool canAtack;
+    public bool canMove;
+    public bool noActions; 
 
     #region PRIVATE_FUNCTIONS
     private void Awake()
     {
+        canMove = true;
         canAtack = true;
+        noActions = false;
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -40,11 +44,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        reloadTimeCount = reloadTimeCount + Time.deltaTime;
-        NavMeshMovement();
-        ManageAtack();
-        DebugAnimations();
-        ManageMovementAnimation();
+        if (noActions == false)
+        {
+            reloadTimeCount = reloadTimeCount + Time.deltaTime;
+            NavMeshMovement();
+            ManageAtack();
+            DebugAnimations();
+            ManageMovementAnimation();
+        }
+
     }
 
     private void ManageMovementAnimation()
@@ -118,8 +126,17 @@ public class Player : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Die");
-        animator.SetTrigger(texts.ANIM_DIE);
+        if (noActions == false)
+        {
+            canAtack = false;
+            canMove = false;
+            noActions = true;
+            Debug.Log("Die");
+            animator.SetTrigger(texts.ANIM_DIE);
+            //Mostrar pantalla de GameOver
+            SceneLoads.LoadGameOverScene();
+        }
+
     }
 
     private void DebugAnimations()

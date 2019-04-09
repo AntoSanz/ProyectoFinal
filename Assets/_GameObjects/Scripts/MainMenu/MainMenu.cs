@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] Dropdown dropdownDif;
     [SerializeField] Dropdown dropdownLevel;
+    [SerializeField] GameObject scoreInput;
     private int unlockedLevels;
     private string sceneSelected;
 
+    private void Start()
+    {
+        SetInitialConfigScenes();
+    }
     //Opciones principales del menú
     public void StartGame()
     {
@@ -70,6 +76,7 @@ public class MainMenu : MonoBehaviour
                 break;
         }
     }
+
     public void GoCustomScene()
     {
         if (sceneSelected == null)
@@ -78,5 +85,27 @@ public class MainMenu : MonoBehaviour
         }
         SceneManager.LoadScene(sceneSelected);
     }
-    //Menu de opciones
+
+    //Pintar los puntos maximos conseguidos en un nivel en el onchange
+    private void SetInitialConfigScenes()
+    {
+        scoreInput.GetComponent<TextMeshProUGUI>().text = texts.MAX_POINTS_STRING + GameManager.p0;
+    }
+    public void ShowMaxPointsInMainMenu()
+    {
+        var scenario = dropdownLevel.value;
+        Debug.Log("");
+        switch (scenario)
+        {
+            case 0:
+                scoreInput.GetComponent<TextMeshProUGUI>().text = texts.MAX_POINTS_STRING + GameManager.p0;
+                break;
+            case 1:
+                scoreInput.GetComponent<TextMeshProUGUI>().text = texts.MAX_POINTS_STRING + GameManager.p1;
+                break;
+            case 2:
+                scoreInput.GetComponent<TextMeshProUGUI>().text = texts.MAX_POINTS_STRING + GameManager.p2;
+                break;
+        }
+    }
 }

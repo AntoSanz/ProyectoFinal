@@ -1434,8 +1434,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1115495312}
-  sliderhp: {fileID: 0}
+  timeBetweenShoots: 0
+  currentHp: 0
   estado: 0
+  canAtack: 0
+  canMove: 0
+  noActions: 0
 --- !u!195 &691770182
 NavMeshAgent:
   m_ObjectHideFlags: 0

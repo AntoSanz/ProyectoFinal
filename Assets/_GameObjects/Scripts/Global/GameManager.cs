@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour
     //Variables que almacenan los playerprefs cargados
     public static int difficulty = 1;
     private static int unlockedLevels;
-    private static string p0, p1, p2, p3;
+    public static string p0, p1, p2, p3;
     public static int currentSceneNumber;
     public static int SceneNumber;
     //private static TextMeshPro textMeshPoints;
+    public static bool pauseActive;
     #endregion
 
     #region GET_SET
@@ -43,8 +44,6 @@ public class GameManager : MonoBehaviour
             max_hp_player = value;
         }
     }
-
-
     #endregion
 
     #region PUBLIC_FUNCTIONS
@@ -86,19 +85,30 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        pointsCount = GameObject.FindGameObjectWithTag(texts.TAG_POINTS).GetComponent<Text>();
+        GameObject p = GameObject.FindGameObjectWithTag(texts.TAG_POINTS);
+        if (p != null)
+        {
+            pointsCount = p.GetComponent<Text>();
+        }
+        //pointsCount = GameObject.FindGameObjectWithTag(texts.TAG_POINTS).GetComponent<Text>();
         //Obtiene el nombre de la escena y lo transforma a integer (0 = tutorial, 1 = Scene1, 2 = Scene2) y lo almacena en "sceneNumber".
         //Ademas, si en los PlayerPrefs la ultima escena desbloqueada es menor que la escena en la que estamos, lo actualiza.
         GetSceneName();
-
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (pauseActive == false && Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene(texts.SCENE_PAUSE, LoadSceneMode.Additive);
             PauseUI.PauseGame();
+            pauseActive = true;
+        }
+        else if (pauseActive == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Time.timeScale = 1;
+            pauseActive = false;
+            SceneManager.UnloadSceneAsync(texts.SCENE_PAUSE);
         }
     }
 
@@ -169,13 +179,13 @@ public class GameManager : MonoBehaviour
 
     /*GESTION DE LAS PUNTUACIONES*/
     //LLamar cuando acabamos el nivel para comprobar si guardamos o no los puntos.
-    public void TryToSavePoints()
+    public static void TryToSavePoints()
     {
         SetMaxPoints(currentSceneNumber, formatScore);
     }
 
     //Guarda los puntos maximos obtenidos en un nivel
-    private void SetMaxPoints(int _level, string _points)
+    private static void SetMaxPoints(int _level, string _points)
     {
         //Comprobamos si hay que almacenar la puntuación conseguida
         bool save = ComparePoints(_level, _points);
@@ -200,14 +210,14 @@ public class GameManager : MonoBehaviour
     }
 
     //Comparar los puntos maximos y lo sconseguidos de un nivel. Devuelve TRUE si los puntos obtenidos son mayores que los almacenados en el PlayerPrefs
-    private bool ComparePoints(int _level, string _points)
+    private static bool ComparePoints(int _level, string _points)
     {
         bool save = false;
         int x;
         int.TryParse(_points, out x); //Parseamos el string de la puntuación a integer;
 
         //Comparamos el integer de la puntuación obtenida con la que queremos guardar
-        if (x > Points)
+        if (Points <= x)
         {
             save = false; // Si la puntuación es menor, return false para que no guarde nada.
         }
@@ -233,4 +243,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(texts.PP_SELECTED_DIFICULTY_TEXT, _difficultyId);
     }
     #endregion
+
+
 }

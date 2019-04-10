@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     //Opciones principales del menú
     public void StartGame()
     {
-        SceneManager.LoadScene(texts.SCENE_1);
+        SceneManager.LoadScene(texts.SCENE_TUTORIAL);
     }
 
     public void ShowOptionsMenu()
